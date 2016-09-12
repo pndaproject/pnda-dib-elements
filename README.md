@@ -2,14 +2,21 @@
 
 Deploying PNDA using Heat templates requires an image with some pre-installed elements, such as `os-collect-config`. This guide describes how to build such an image from a set of external disk-image-builder elements.
 
-PNDA currently uses the Ubuntu operating system. 
+PNDA currently uses the Ubuntu operating system, but you can use Ubuntu or Centos OSes to create the PNDA image.
 
 ## Pre-requesites
 
 **Important:** these dependencies install correctly on an Ubuntu 14.04 *server* image but fail on a *desktop* images.
 
+If you are on Ubuntu:
 ```
 sudo apt-get -y install python-pip python-dev qemu-utils libguestfs-tools
+```
+
+If you are on Centos:
+```
+sudo yum install epel-release
+sudo yum install python-pip python-devel libguestfs-tools
 ```
 
 ## Setting up a virtualenv
@@ -96,5 +103,5 @@ Upload the image to the OpenStack image service:
 
 ```
 . your_openstack_rc.sh
-glance image-create --name pnda-base --file ubuntu-software-config.qcow2 --progress --disk-format qcow2 --container-format bare --is-public true
+glance image-create --name pnda-base --file ubuntu-software-config.qcow2 --progress --disk-format qcow2 --container-format bare
 ```
