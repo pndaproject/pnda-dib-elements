@@ -68,7 +68,7 @@ Set up environment variables, assuming you currently are in this repository's pr
 
 ```
 cat > dib_env.sh <<EOF
-export ELEMENTS_PATH=tripleo-image-elements/elements:heat-templates/hot/software-config/elements:.
+export ELEMENTS_PATH=tripleo-image-elements/elements:heat-templates/hot/software-config/elements:elements
 export BASE_ELEMENTS="ubuntu"
 # MANDATORY ELEMENTS FOR PNDA PROVISIONING
 export AGENT_ELEMENTS="os-collect-config os-refresh-config os-apply-config"
