@@ -62,17 +62,25 @@ Set up environment variables, assuming you currently are in this repository's pr
 cat > dib_env.sh <<EOF
 export ELEMENTS_PATH=tripleo-image-elements/elements:heat-templates/hot/software-config/elements:elements
 export BASE_ELEMENTS="ubuntu"
+
 # MANDATORY ELEMENTS FOR PNDA PROVISIONING
 export AGENT_ELEMENTS="os-collect-config os-refresh-config os-apply-config"
+
 # MANDATORY ELEMENTS FOR PNDA PROVISIONING
 export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
+
 # NON MANDATORY ELEMENTS FOR PNDA PROVISIONING
 # but might be helpful if you plan to use anible, saltstack or puppet
 # export DEPLOYMENT_TOOL="heat-config-ansible heat-config-salt heat-config-puppet"
 # PNDA ELEMENTS
+
+# USE AN ALTERNATE UBUNTU MIRROR
+# export DIB_DISTRIBUTION_MIRROR="http://[MIRRORIP]/ubuntu"
+
 export PNDA_ELEMENTS="cloud-init-pnda"
 export IMAGE_NAME=ubuntu-software-config
 export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS"
+
 EOF
 . dib_env.sh
 ```
