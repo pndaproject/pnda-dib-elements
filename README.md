@@ -36,26 +36,18 @@ virtualenv /path/to/project/pnda-dib
 
 ## Getting the required elements
 
-Clone the `openstack/tripleo-image-elements` repo:
-
+Update submodules:
 ```
-git clone https://github.com/openstack/tripleo-image-elements.git
-```
-
-Clone the `openstack/heat-templates` repo:
-
-```
-git clone https://github.com/openstack/heat-templates.git
+git submodule init
+git submodule update
 ```
 
 Install `openstack/diskimage-builder`:
 
 ```
-git clone https://github.com/openstack/dib-utils.git
 cd dib-utils
 python setup.py install
 cd ..
-git clone https://github.com/openstack/diskimage-builder.git
 cd diskimage-builder
 python setup.py install
 cd ..
@@ -68,7 +60,7 @@ Set up environment variables, assuming you currently are in this repository's pr
 
 ```
 cat > dib_env.sh <<EOF
-export ELEMENTS_PATH=tripleo-image-elements/elements:heat-templates/hot/software-config/elements:.
+export ELEMENTS_PATH=tripleo-image-elements/elements:heat-templates/hot/software-config/elements:elements
 export BASE_ELEMENTS="ubuntu"
 # MANDATORY ELEMENTS FOR PNDA PROVISIONING
 export AGENT_ELEMENTS="os-collect-config os-refresh-config os-apply-config"
