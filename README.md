@@ -55,7 +55,7 @@ pip install six
 pip install PyYAML
 ```
 
-Set up environment variables, assuming you currently are in this repository's project directory (there is at least a pnda-cloud-init directory present):
+Set up environment variables, assuming you currently are in this repository's project directory (there is at least a elements directory present):
 
 
 ```
