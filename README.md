@@ -36,26 +36,18 @@ virtualenv /path/to/project/pnda-dib
 
 ## Getting the required elements
 
-Clone the `openstack/tripleo-image-elements` repo:
-
+Update submodules:
 ```
-git clone https://github.com/openstack/tripleo-image-elements.git
-```
-
-Clone the `openstack/heat-templates` repo:
-
-```
-git clone https://github.com/openstack/heat-templates.git
+git submodule init
+git submodule update
 ```
 
 Install `openstack/diskimage-builder`:
 
 ```
-git clone https://github.com/openstack/dib-utils.git
 cd dib-utils
 python setup.py install
 cd ..
-git clone https://github.com/openstack/diskimage-builder.git
 cd diskimage-builder
 python setup.py install
 cd ..
