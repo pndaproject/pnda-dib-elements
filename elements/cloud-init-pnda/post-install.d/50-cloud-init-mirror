@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-0} -gt 0 ]; then
+    set -x
+fi
+set -eu
+set -o pipefail
+
+DIB_DISTRIBUTION_MIRROR=${DIB_DISTRIBUTION_MIRROR:-}
+
+[ -n "$DIB_DISTRIBUTION_MIRROR" ] || exit 0
+
+echo "apt_mirror: $DIB_DISTRIBUTION_MIRROR" > /etc/cloud/cloud.cfg.d/01.apt-mirror.cfg

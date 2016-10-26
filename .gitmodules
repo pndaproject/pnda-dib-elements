@@ -1,0 +1,12 @@
+[submodule "tripleo-image-elements"]
+	path = tripleo-image-elements
+	url = https://github.com/openstack/tripleo-image-elements.git
+[submodule "heat-templates"]
+	path = heat-templates
+	url = https://github.com/openstack/heat-templates.git
+[submodule "dib-utils"]
+	path = dib-utils
+	url = https://github.com/openstack/dib-utils.git
+[submodule "diskimage-builder"]
+	path = diskimage-builder
+	url = https://github.com/openstack/diskimage-builder.git
