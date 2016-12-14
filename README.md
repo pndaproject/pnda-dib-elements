@@ -78,7 +78,7 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 # USE AN ALTERNATE UBUNTU MIRROR
 # export DIB_DISTRIBUTION_MIRROR="http://[MIRRORIP]/ubuntu"
 
-export PNDA_ELEMENTS="cloud-init-pnda"
+export PNDA_ELEMENTS="cloud-init-pnda pnda-patches"
 export IMAGE_NAME=ubuntu-software-config
 export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS"
 
