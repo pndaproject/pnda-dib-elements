@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] 2016-12-12
+### Changed
+- Moving bootloader element to elements directory
+
 ## [0.1.1] 2016-10-21
 ### Added
 - Instructions to build a PNDA image from CentOS
