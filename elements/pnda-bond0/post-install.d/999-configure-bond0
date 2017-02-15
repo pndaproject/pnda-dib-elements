@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-1} -gt 0 ]; then
+    set -x
+fi
+set -eu
+set -o pipefail
+
+apt-get install -y ifenslave
+
+cat << EOF > /etc/network/interfaces.d/bond0.cfg
+auto eth0
+    iface eth0 inet manual
+    bond-master bond0
+    bond-primary eth0
+
+auto eth1
+    iface eth1 inet manual
+    bond-master bond0
+    pre-up sleep 5
+
+auto bond0
+iface bond0 inet dhcp
+    bond-mode 4
+    bond-miimon 100
+    bond-lacp-rate 1
+    bond-slaves eth0 eth1
+EOF
+
+rm -f /etc/network/interfaces.d/eth0.cfg

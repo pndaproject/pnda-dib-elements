@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] XXXX-XX-XX
+### Added
+- [PNDA-2741]: New element to disable IPv6
+- [PNDA-2742]: New element to bond eth0 and eth1 together
+
 ## [0.1.2] 2016-12-12
 ### Changed
 - Moving bootloader element to elements directory

@@ -78,6 +78,10 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 # USE AN ALTERNATE UBUNTU MIRROR
 # export DIB_DISTRIBUTION_MIRROR="http://[MIRRORIP]/ubuntu"
 
+# You can specify other pnda-specific elements in the PNDA_ELEMENTS variable:
+# for example, 'pnda-disable-ipv6' or 'pnda-bond0'
+# Please look inside the elements directory
+
 export PNDA_ELEMENTS="cloud-init-pnda pnda-patches"
 export IMAGE_NAME=ubuntu-software-config
 export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS"
