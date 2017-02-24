@@ -79,8 +79,11 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 # export DIB_DISTRIBUTION_MIRROR="http://[MIRRORIP]/ubuntu"
 
 # You can specify other pnda-specific elements in the PNDA_ELEMENTS variable:
-# for example, 'pnda-disable-ipv6' or 'pnda-bond0'
+# for example, 'pnda-disable-ipv6', 'pnda-bond0' or 'os-hardening'
 # Please look inside the elements directory
+
+# If you are using 'os-hardening' element uncomment the following line
+# export ANSIBLE_VERSION=2.2.1.0
 
 export PNDA_ELEMENTS="cloud-init-pnda pnda-patches"
 export IMAGE_NAME=pnda-image
