@@ -83,7 +83,7 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 # Please look inside the elements directory
 
 export PNDA_ELEMENTS="cloud-init-pnda pnda-patches"
-export IMAGE_NAME=ubuntu-software-config
+export IMAGE_NAME=pnda-image
 export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS"
 
 EOF
@@ -108,5 +108,5 @@ Upload the image to the OpenStack image service:
 
 ```
 . your_openstack_rc.sh
-glance image-create --name pnda-base --file ubuntu-software-config.qcow2 --progress --disk-format qcow2 --container-format bare
+glance image-create --name pnda-base --file pnda-image.qcow2 --progress --disk-format qcow2 --container-format bare
 ```
