@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - [PNDA-2741]: New element to disable IPv6
 - [PNDA-2742]: New element to bond eth0 and eth1 together
+- [PNDA-2780]: New element executing https://github.com/dev-sec/ansible-os-hardening ansible role
 
 ## [0.1.2] 2016-12-12
 ### Changed
