@@ -85,7 +85,7 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 # If you are using 'os-hardening' element uncomment the following line
 # export ANSIBLE_VERSION=2.2.1.0
 
-export PNDA_ELEMENTS="cloud-init-pnda pnda-patches"
+export PNDA_ELEMENTS="cloud-init-pnda"
 export IMAGE_NAME=pnda-image
 export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS"
 
