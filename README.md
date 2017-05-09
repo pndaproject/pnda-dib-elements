@@ -10,7 +10,7 @@ PNDA currently uses the Ubuntu operating system, but you can use Ubuntu or Cento
 
 If you are on Ubuntu:
 ```
-sudo apt-get -y install python-pip python-dev qemu-utils libguestfs-tools
+sudo apt-get -y install python-pip python-dev qemu-utils libguestfs-tools kpartx
 ```
 
 If you are on Centos:
@@ -55,14 +55,18 @@ pip install six
 pip install PyYAML
 ```
 
+## Ubuntu configuration file
 Set up environment variables, assuming you currently are in this repository's project directory (there is at least a elements directory present):
-
 
 ```
 cat > dib_env.sh <<EOF
 export ELEMENTS_PATH=tripleo-image-elements/elements:heat-templates/hot/software-config/elements:elements
+
+# For Ubuntu base image
 export BASE_ELEMENTS="ubuntu"
 export DIB_RELEASE=trusty
+# USE AN ALTERNATE UBUNTU MIRROR
+# export DIB_DISTRIBUTION_MIRROR="http://[MIRRORIP]/ubuntu"
 
 # MANDATORY ELEMENTS FOR PNDA PROVISIONING
 export AGENT_ELEMENTS="os-collect-config os-refresh-config os-apply-config"
@@ -75,8 +79,6 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 # export DEPLOYMENT_TOOL="heat-config-ansible heat-config-salt heat-config-puppet"
 # PNDA ELEMENTS
 
-# USE AN ALTERNATE UBUNTU MIRROR
-# export DIB_DISTRIBUTION_MIRROR="http://[MIRRORIP]/ubuntu"
 
 # You can specify other pnda-specific elements in the PNDA_ELEMENTS variable:
 # for example, 'pnda-disable-ipv6', 'pnda-bond0' or 'os-hardening'
@@ -88,6 +90,55 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 export PNDA_ELEMENTS="cloud-init-pnda"
 export IMAGE_NAME=pnda-image
 export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS"
+
+EOF
+. dib_env.sh
+```
+
+## RHEL configuration file
+Set up environment variables, assuming you currently are in this repository's project directory (there is at least a elements directory present):
+
+NOTICE: for more information related to RHEL installation, go to [RHEL7 diskimage builder docs](https://docs.openstack.org/developer/diskimage-builder/elements/rhel7/README.html)
+Please set the REG_USER and REG_PASSWORD used for registering and building the base image. PNDA_RHEL_REG_USER and PNDA_RHEL_REG_PASSWORD are used for registering all the deployed images using Heat. Refer to [RHEL common documentation for diskimage builder](https://docs.openstack.org/developer/diskimage-builder/elements/rhel-common/README.html)
+
+```
+cat > dib_env.sh <<EOF
+export ELEMENTS_PATH=tripleo-image-elements/elements:heat-templates/hot/software-config/elements:elements
+
+# For RHEL base image
+export BASE_ELEMENTS="rhel7"
+export DIB_LOCAL_IMAGE=rhel-guest-image-7.3-35.x86_64.qcow2
+export REG_METHOD=portal
+export REG_USER=<user>
+export REG_PASSWORD=<password>
+export PNDA_RHEL_REG_USER=<user>
+export PNDA_RHEL_REG_PASSWORD=<password>
+export REG_REPOS='rhel-7-server-optional-rpms,rhel-7-server-extras-rpms'
+export REG_AUTO_ATTACH=true 
+export PNDA_RHEL_ELEMENTS="pnda-rhel-registration"
+
+# MANDATORY ELEMENTS FOR PNDA PROVISIONING
+export AGENT_ELEMENTS="os-collect-config os-refresh-config os-apply-config"
+
+# MANDATORY ELEMENTS FOR PNDA PROVISIONING
+export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
+
+# NON MANDATORY ELEMENTS FOR PNDA PROVISIONING
+# but might be helpful if you plan to use anible, saltstack or puppet
+# export DEPLOYMENT_TOOL="heat-config-ansible heat-config-salt heat-config-puppet"
+# PNDA ELEMENTS
+
+
+# You can specify other pnda-specific elements in the PNDA_ELEMENTS variable:
+# for example, 'pnda-disable-ipv6', 'pnda-bond0' or 'os-hardening'
+# Please look inside the elements directory
+
+# If you are using 'os-hardening' element uncomment the following line
+# export ANSIBLE_VERSION=2.2.1.0
+
+export PNDA_ELEMENTS="cloud-init-pnda"
+export IMAGE_NAME=pnda-image
+export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS \$PNDA_RHEL_ELEMENTS"
 
 EOF
 . dib_env.sh
