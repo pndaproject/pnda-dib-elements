@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file.
 - [PNDA-2742]: New element to bond eth0 and eth1 together
 - [PNDA-2780]: New element executing https://github.com/dev-sec/ansible-os-hardening ansible role
 
+### Changed
+- Disable password expiration in os-hardening element
+
 ## [0.1.2] 2016-12-12
 ### Changed
 - Moving bootloader element to elements directory
