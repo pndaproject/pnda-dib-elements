@@ -21,6 +21,8 @@ cat << EOF > pnda.yml
   hosts: localhost
   roles:
     - ansible-os-hardening
+  vars:
+    - os_auth_pw_max_age: 99999
 EOF
 
 ln -sf ${WORKING_DIR}/ansible-os-hardening-${VERSION} ${WORKING_DIR}/ansible-os-hardening
