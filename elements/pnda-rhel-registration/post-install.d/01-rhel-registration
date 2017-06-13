@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-0} -gt 0 ]; then
+    set -x
+fi
+set -eu
+set -o pipefail
+
+PNDA_RHEL_REG_USER=${PNDA_RHEL_REG_USER:-}
+PNDA_RHEL_REG_PASSWORD=${PNDA_RHEL_REG_PASSWORD:-}
+
+[ -n "$PNDA_RHEL_REG_USER" ] || exit 0
+[ -n "$PNDA_RHEL_REG_PASSWORD" ] || exit 0
+
+cat > /etc/cloud/cloud.cfg.d/01.rhel-registration.cfg <<EOF
+
+bootcmd:
+ - subscription-manager register --force --auto-attach --username=$PNDA_RHEL_REG_USER --password=$PNDA_RHEL_REG_PASSWORD
+    
+EOF
