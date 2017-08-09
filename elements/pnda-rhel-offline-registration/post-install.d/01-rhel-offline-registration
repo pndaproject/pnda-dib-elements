@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ ${DIB_DEBUG_TRACE:-0} -gt 0 ]; then
+    set -x
+fi
+set -eu
+set -o pipefail
+
+PNDA_MIRROR=${PNDA_MIRROR:-}
+
+[ -n "$PNDA_MIRROR" ] || exit 0
+
+cat > /etc/cloud/cloud.cfg.d/60.rhel-registration.cfg <<EOF
+
+runcmd:
+ - curl -L $PNDA_MIRROR/certificates/\$(cat /etc/hostname).pem -o /etc/cloud/rhel.pem
+ - subscription-manager import --certificate=/etc/cloud/rhel.pem
+
+EOF
