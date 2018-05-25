@@ -50,6 +50,7 @@ python setup.py install
 cd ..
 cd diskimage-builder
 python setup.py install
+pip install -e .
 cd ..
 pip install six
 pip install PyYAML
@@ -89,7 +90,47 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 
 export PNDA_ELEMENTS="cloud-init-pnda"
 export IMAGE_NAME=pnda-image
-export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS"
+export PIP_9="install-pip-9"
+export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$PIP_9 \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS"
+export DIB_INSTALLTYPE_pip_and_virtualenv="package"
+
+EOF
+. dib_env.sh
+```
+
+## Centos configuration file
+Set up environment variables, assuming you currently are in this repository's project directory (there is at least a elements directory present):
+
+```
+cat > dib_env.sh <<EOF
+export ELEMENTS_PATH=tripleo-image-elements/elements:heat-templates/hot/software-config/elements:elements
+
+# For Centos base image
+export BASE_ELEMENTS="centos7"
+
+# MANDATORY ELEMENTS FOR PNDA PROVISIONING
+export AGENT_ELEMENTS="os-collect-config os-refresh-config os-apply-config"
+
+# MANDATORY ELEMENTS FOR PNDA PROVISIONING
+export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
+
+# NON MANDATORY ELEMENTS FOR PNDA PROVISIONING
+# but might be helpful if you plan to use anible, saltstack or puppet
+# export DEPLOYMENT_TOOL="heat-config-ansible heat-config-salt heat-config-puppet"
+# PNDA ELEMENTS
+
+# You can specify other pnda-specific elements in the PNDA_ELEMENTS variable:
+# for example, 'pnda-disable-ipv6', 'pnda-bond0' or 'os-hardening'
+# Please look inside the elements directory
+
+# If you are using 'os-hardening' element uncomment the following line
+# export ANSIBLE_VERSION=2.2.1.0
+
+export PNDA_ELEMENTS="cloud-init-pnda"
+export IMAGE_NAME=pnda-image
+export PIP_9="install-pip-9"
+export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS \$PIP_9"
+export DIB_INSTALLTYPE_pip_and_virtualenv="package"
 
 EOF
 . dib_env.sh
@@ -140,7 +181,9 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 
 export PNDA_ELEMENTS="cloud-init-pnda"
 export IMAGE_NAME=pnda-image
-export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS \$PNDA_RHEL_CONFIGURATION \$PNDA_RHEL_ELEMENTS"
+export PIP_9="install-pip-9"
+export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS \$PNDA_RHEL_CONFIGURATION \$PNDA_RHEL_ELEMENTS \$PIP_9"
+export DIB_INSTALLTYPE_pip_and_virtualenv="package"
 
 EOF
 . dib_env.sh
@@ -203,7 +246,9 @@ export DEPLOYMENT_BASE_ELEMENTS="heat-config heat-config-script"
 
 export PNDA_ELEMENTS="cloud-init-pnda"
 export IMAGE_NAME=pnda-image
-export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS \$PNDA_RHEL_CONFIGURATION \$PNDA_RHEL_ELEMENTS"
+export PIP_9="install-pip-9"
+export ALL_ELEMENTS="\$BASE_ELEMENTS \$AGENT_ELEMENTS \$DEPLOYMENT_BASE_ELEMENTS \$DEPLOYMENT_TOOL \$PNDA_ELEMENTS \$PNDA_RHEL_CONFIGURATION \$PNDA_RHEL_ELEMENTS \$PIP_9"
+export DIB_INSTALLTYPE_pip_and_virtualenv="package"
 
 EOF
 . dib_env.sh
