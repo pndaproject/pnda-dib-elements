@@ -6,4 +6,4 @@ fi
 set -eu
 set -o pipefail
 
-sed -ie 's/     name\:\ .*/     name\:\ cloud\-user/' /etc/cloud/cloud.cfg
+sed -ie 's/    name\:\ .*/    name\:\ cloud\-user/' /etc/cloud/cloud.cfg
