@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] 2018-06-11
+### Fixed
+- PNDA-4538: Update git submodules and python pip versions
+- PNDA-4046: Correct subscription links in README
+
 ## [0.2.0] 2017-05-23
 ### Added
 - PNDA-2741: New element to disable IPv6
