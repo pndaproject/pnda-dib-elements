@@ -142,8 +142,8 @@ Set up environment variables, assuming you currently are in this repository's pr
 
 ### Online subscription
 
-NOTICE: for more information related to RHEL installation, go to [RHEL7 diskimage builder docs](https://docs.openstack.org/developer/diskimage-builder/elements/rhel7/README.html)
-Please set the REG_USER and REG_PASSWORD used for registering and building the base image. PNDA_RHEL_REG_USER and PNDA_RHEL_REG_PASSWORD are used for registering all the deployed images using Heat. Refer to [RHEL common documentation for diskimage builder](https://docs.openstack.org/developer/diskimage-builder/elements/rhel-common/README.html)
+NOTICE: for more information related to RHEL installation, go to [RHEL7 diskimage builder docs](https://docs.openstack.org/diskimage-builder/latest/elements/rhel7/README.html)
+Please set the REG_USER and REG_PASSWORD used for registering and building the base image. PNDA_RHEL_REG_USER and PNDA_RHEL_REG_PASSWORD are used for registering all the deployed images using Heat. Refer to [RHEL common documentation for diskimage builder](https://docs.openstack.org/diskimage-builder/latest/elements/rhel-common/README.html)
 
 ```
 cat > dib_env.sh <<EOF
@@ -191,7 +191,7 @@ EOF
 
 ### Offline subscription
 
-In case you want to setup a PNDA in an offline environment, you need then to follow the offline registration describe here:[RHEL offline registration documentation](https://docs.openstack.org/developer/diskimage-builder/elements/rhel-common/README.html).
+In case you want to setup a PNDA in an offline environment, you need then to follow the offline registration describe here:[RHEL offline registration documentation](https://docs.openstack.org/diskimage-builder/latest/elements/rhel-common/README.html).
 
 You will need to generate certificates for all your cluster instances, so then for a pico cluster with 1 data node and 1 kafka node and a cluster name pnda-offline, you will need 6 certificates and each one need CPU information as describe on the [platform requirement on Heat](https://github.com/pndaproject/pnda-guide/blob/develop/provisioning/platform_requirements.md#heat):
 pnda-offline-bastion.novalocal.pem
